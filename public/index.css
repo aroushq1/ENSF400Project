@@ -1,8 +1,7 @@
-/* General Page Styling */
 body {
-    font-family: 'Poppins', sans-serif; /* Clean, modern font */
-    background: #FFFFFF; /* Light, clean background */
-    color: #333333; /* Darker text for readability */
+    font-family: 'Poppins', sans-serif;
+    background: #FFFFFF;
+    color: #333333;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,21 +10,19 @@ body {
     text-align: center;
 }
 
-/* Header */
 header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px; /* Adjusted padding for top/bottom and left/right */
-    background: #1A2637; /* Dark header background */
-    color: #FFFFFF; /* White text */
-    border-bottom: 3px solid #B66E12; /* Subtle gold border */
+    padding: 20px 40px;
+    background: #1A2637;
+    color: #FFFFFF;
+    border-bottom: 3px solid #B66E12;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Ensure padding doesn't affect layout */
+    box-sizing: border-box;
 }
 
-/* Logo Styling */
 header .logo {
     display: flex;
     align-items: center;
@@ -37,16 +34,14 @@ header .logo img {
     margin-right: 12px;
 }
 
-/* Header Text */
 header h1 {
     font-size: 22px;
     font-weight: 600;
     color: #FFFFFF;
 }
 
-/* Navigation Links */
 nav a {
-    color: #D77C1B; /* Gold accent for the link */
+    color: #D77C1B;
     font-weight: 500;
     text-decoration: none;
     font-size: 14px;
@@ -54,23 +49,21 @@ nav a {
 }
 
 nav a:hover {
-    color: #B66E12; /* Darker gold on hover */
+    color: #B66E12;
 }
 
-/* Game Info */
 .game-info {
-    max-width: 750px;
+    max-width: 850px;
     margin-top: 40px;
     padding: 20px;
     background: #FFFFFF;
     border-radius: 12px;
-    border: 2px solid #1A2637; /* Border matching header */
+    border: 2px solid #1A2637;
     box-shadow: 0px 4px 15px rgba(26, 38, 55, 0.2);
 }
 
-/* Button Styling */
 button {
-    background: #D77C1B; /* Gold background */
+    background: #D77C1B;
     color: white;
     font-weight: 500;
     border: none;
@@ -84,11 +77,10 @@ button {
 }
 
 button:hover {
-    background: #B66E12; /* Darker gold on hover */
+    background: #B66E12;
     box-shadow: 0px 6px 15px rgba(182, 110, 18, 0.4);
 }
 
-/* Game Container */
 .game-container {
     margin-top: 40px;
     padding: 30px;
@@ -98,17 +90,15 @@ button:hover {
     box-shadow: 0px 6px 20px rgba(26, 38, 55, 0.3);
 }
 
-/* Canvas */
 canvas {
     background: black;
     display: block;
     margin: auto;
     border-radius: 8px;
-    border: 4px solid #B66E12; /* Gold border */
+    border: 4px solid #B66E12;
     box-shadow: 0px 6px 12px rgba(182, 110, 18, 0.2);
 }
 
-/* Footer */
 footer {
     margin-top: 60px;
     padding: 20px;
@@ -122,11 +112,11 @@ footer {
 }
 
 footer a {
-    color: #D77C1B; /* Gold accent link */
+    color: #D77C1B;
     text-decoration: none;
 }
 
 footer a:hover {
     text-decoration: underline;
-    color: #B66E12; /* Darker gold on hover */
+    color: #B66E12;
 }
