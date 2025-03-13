@@ -113,3 +113,30 @@ function update(){
     requestAnimationFrame(update);
 }
 
+canvas.addEventListener("mousemove", (e) =>{
+    let rect = canvas.getBoundingClientRect();
+    let y = e.clientY - rect.top;
+    movePaddle(userPaddle, y - userPaddle.height/2);
+});
+
+function draw(){
+    ctx.font = "30px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#FFF";
+    ctx.fillRect(userPaddle.x, userPaddle.y, userPaddle.width, userPaddle.height);
+    ctx.fillRect(aiPaddle.x, aiPaddle.y, aiPaddle.width, aiPaddle.height);
+
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2, false);
+    ctx.fillStyle = "#FFF";
+    ctx.fill();
+
+    ctx.fillText(scores[0], canvas.width/4, 30);
+    ctx.fillText(scores[1], (3*(canvas.width))/4, 30);
+
+    moveBall();
+}
