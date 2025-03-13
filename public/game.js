@@ -78,3 +78,38 @@ function moveBall(){
         resetBall(1);
     }
 }
+
+function resetBall(direction){
+    ball.x = canvas.width/2;
+    ball.y = canvas.height/2;
+
+    ball.speed = 4;
+
+    ball.dy = (Math.random() > 0.5 ? 1 : -1) * ball.speed;
+    ball.dx = direction * ball.speed;
+}
+
+let aiTargetY = canvas.height/2;
+function adjustAiTarget(){
+    aiTargetY = ball.y + (Math.random() * 60 -30);
+}
+
+function aiLogic(){
+    if(ball.dx > 0){
+        adjustAiTarget();
+    }
+
+    if(aiPaddle.y + aiPaddle.height/2 < aiTargetY){
+        movePaddle(aiPaddle, aiPaddle.y + aiPaddle.dy);
+    }
+    else{
+        movePaddle(aiPaddle, aiPaddle.y - aiPaddle.dy);
+    }
+}
+
+function update(){
+    aiLogic();
+    draw();
+    requestAnimationFrame(update);
+}
+
