@@ -1,1 +1,31 @@
-Hello World
+    <!-- 
+    TODO: Add formating
+    TODO: Add borders and divs
+    TODO: Add additional content
+    TODO: Add styling
+     -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <title>Play Pong w/ AI</title>
+        <style>
+            canvas { background: black;
+                    display: block;
+                    margin: auto;
+                    }
+        </style>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <Body>
+        <h1>Play Pong W/ Ai</h1>
+        <p> Step into the classic world of Pong, now powered by AI! Challenge 
+            yourself against an advanced AI opponent that adapts to your gameplay. 
+            Whether you're a beginner or a Pong master, the AI adjusts its strategy 
+            to keep you on your toes.</p>
+        <canvas id="pong" width="800" height="400"></canvas>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="game.js"></script>
+    </Body>
+</html>
