@@ -1,7 +1,9 @@
 const canvas = document.getElementById('pong');
 const ctx = canvas.getContext('2d');
 
+let isPaused = false;
 let scores = [0,0]
+
 const ball = {
     x : canvas.width/2,
     y : canvas.height/2,
@@ -35,29 +37,32 @@ function movePaddle(paddle, y){
 }
 
 function moveBall(){
+    if (isPaused) return; //game is paused
+
     ball.x += ball.dx;
     ball.y += ball.dy;
 
     if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
         ball.dy *= -1;
     }
-    if( ball.y + ball.radius < userPaddle.x + userPaddle.width  &&
-        ball.x + ball.radius > userPaddle.x                     &&
-        ball.y - ball.radius < userPaddle.y + userPaddle.height &&
-        ball.y + ball.radius > userPaddle.y
-    ){
+
+    if (
+        ball.x - ball.radius <= userPaddle.x + userPaddle.width && 
+        ball.x + ball.radius >= userPaddle.x                    &&
+        ball.y + ball.radius >= userPaddle.y                    &&
+        ball.y - ball.radius <= userPaddle.y + userPaddle.height
+    ) {
         ball.dx *= -1;
-        
         ball.speed++;
-        let collidePoint = ball.y - (userPaddle.y + userPaddle.height/2);
-        collidePoint = collidePoint / (userPaddle.height/2);
-        let angleRad = (Math.PI / 4)* collidePoint;
+        let collidePoint = ball.y - (userPaddle.y + userPaddle.height / 2);
+        collidePoint = collidePoint / (userPaddle.height / 2);
+        let angleRad = (Math.PI / 4) * collidePoint;
         ball.dy = ball.speed * Math.sin(angleRad);
         adjustAiTarget();
     }
 
     if( ball.y + ball.radius < aiPaddle.x + aiPaddle.width  &&
-        ball.x + ball.radius > aiPaddle.x                     &&
+        ball.x + ball.radius > aiPaddle.x                   &&
         ball.y - ball.radius < aiPaddle.y + aiPaddle.height &&
         ball.y + ball.radius > aiPaddle.y
     ){
@@ -98,6 +103,8 @@ function adjustAiTarget(){
 }
 
 function aiLogic(){
+    if (isPaused) return;
+
     if(ball.dx > 0){
         adjustAiTarget();
     }
@@ -117,6 +124,7 @@ function update(){
 }
 
 canvas.addEventListener("mousemove", (e) =>{
+    if (isPaused) return;
     let rect = canvas.getBoundingClientRect();
     let y = e.clientY - rect.top;
     movePaddle(userPaddle, y - userPaddle.height/2);
@@ -143,5 +151,12 @@ function draw(){
 
     moveBall();
 }
+
+function togglePause(){
+    isPaused = !isPaused;
+    pauseButton.textContext = isPuased ? "Resume" : "Pause";
+}
+
+pauseButton.addEventListener("click", togglePause);
 
 update();
