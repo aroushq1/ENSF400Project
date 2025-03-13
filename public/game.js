@@ -140,3 +140,5 @@ function draw(){
 
     moveBall();
 }
+
+update();
