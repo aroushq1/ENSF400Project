@@ -38,6 +38,9 @@ function moveBall(){
     ball.x += ball.dx;
     ball.y += ball.dy;
 
+    if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
+        ball.dy *= -1;
+    }
     if( ball.y + ball.radius < userPaddle.x + userPaddle.width  &&
         ball.x + ball.radius > userPaddle.x                     &&
         ball.y - ball.radius < userPaddle.y + userPaddle.height &&
