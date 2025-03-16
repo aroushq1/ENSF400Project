@@ -12,6 +12,5 @@ Step 3: Other members of the team will review and test the code and suggest any 
 
 Step 4: Once the code is reviewed and tested, and the team is happy with it, the branch will be merged to main.
 
-Step 5: To keep the repository clean, once the branch has been merged, it will be deleted.
-
+Branches will be left undeleted to keep as an archive.
 This process will be repeated for each new feature.
