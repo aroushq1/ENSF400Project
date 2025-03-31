@@ -1,22 +1,9 @@
 pipeline {
     agent any
-
     stages {
-        stage('Install dependencies') {
+        stage('Say Hi') {
             steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Lint/Format') {
-            steps {
-                sh 'npx eslint . || echo "ESLint not set up, skipping..."'
-            }
-        }
-
-        stage('Run App') {
-            steps {
-                echo "App start"
+                echo 'Jenkins is working!'
             }
         }
     }
