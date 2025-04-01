@@ -2,7 +2,7 @@
   "name": "playpongw-ai",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest",
@@ -17,6 +17,12 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "jsdom": "^26.0.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^26.0.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.0.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
