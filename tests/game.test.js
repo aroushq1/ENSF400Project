@@ -2,7 +2,13 @@
  * @jest-environment jsdom
  */
 
+const { TextEncoder, TextDecoder } = require("util");
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
 const { JSDOM } = require("jsdom");
+
 
 beforeEach(() => {
     // Set up a virtual DOM for testing
