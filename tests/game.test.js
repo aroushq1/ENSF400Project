@@ -2,6 +2,9 @@
  * @jest-environment jsdom
  */
 
+global.TextEncoder = require("util").TextEncoder;
+global.TextDecoder = require("util").TextDecoder;
+
 const { TextEncoder, TextDecoder } = require("util");
 
 global.TextEncoder = TextEncoder;
@@ -11,20 +14,43 @@ const { JSDOM } = require("jsdom");
 
 
 beforeEach(() => {
-    // Set up a virtual DOM for testing
-    const dom = new JSDOM(`
-        <canvas id="pong" width="800" height="400"></canvas>
-        <button id="pauseButton">Pause</button>
-    `);
-    global.document = dom.window.document;
+    const { JSDOM } = require("jsdom");
+    const dom = new JSDOM(`<!DOCTYPE html><html><body><canvas id="pong" width="800" height="600"></canvas></body></html>`);
     global.window = dom.window;
-    global.canvas = document.getElementById("pong");
-    global.ctx = canvas.getContext("2d");
+    global.document = dom.window.document;
 
-    // Re-require the game script after setting up the DOM
-    jest.resetModules();
-    require("../public/game");
+    // Ensure canvas exists before using getContext
+    global.canvas = document.getElementById("pong");
+    global.ctx = global.canvas.getContext("2d");
+
+    // Mock any other objects you may need
+    global.isPaused = false;
+    global.ball = {
+        x: 400,
+        y: 300,
+        radius: 10,
+        speed: 4,
+        dx: 4,
+        dy: 4
+    };
+    global.userPaddle = {
+        x: 10,
+        y: 200,
+        width: 10,
+        height: 80,
+        dy: 4
+    };
+    global.aiPaddle = {
+        x: 780,
+        y: 200,
+        width: 10,
+        height: 80,
+        dy: 4
+    };
+    global.scores = [0, 0];
+    global.aiTargetY = 300;
 });
+
 
 describe("Pong Game", () => {
     test("Ball should move when game is running", () => {
@@ -32,7 +58,7 @@ describe("Pong Game", () => {
         const initialY = global.ball.y;
 
         global.moveBall();
-
+x
         expect(global.ball.x).not.toBe(initialX);
         expect(global.ball.y).not.toBe(initialY);
     });
@@ -40,7 +66,7 @@ describe("Pong Game", () => {
     test("Ball should reset when it goes out of bounds", () => {
         global.scores = [0, 0];
 
-        global.ball.x = global.canvas.width + 10; // Simulate scoring
+        global.ball.x = global.canvas.width + 10; 
         global.moveBall();
 
         expect(global.ball.x).toBe(global.canvas.width / 2);
