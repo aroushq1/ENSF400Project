@@ -1,9 +1,22 @@
 pipeline {
     agent any
+
     stages {
-        stage('Say Hi') {
+        stage('Install') {
             steps {
-                echo 'Jenkins is working!'
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'npm test || echo "No tests yet"'
+            }
+        }
+
+        stage('Static Code Analysis') {
+            steps {
+                sh 'sonar-scanner'
             }
         }
     }
