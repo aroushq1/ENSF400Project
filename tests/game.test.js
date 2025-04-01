@@ -15,40 +15,12 @@ const { JSDOM } = require("jsdom");
 
 beforeEach(() => {
     const { JSDOM } = require("jsdom");
-    const dom = new JSDOM(`<!DOCTYPE html><html><body><canvas id="pong" width="800" height="600"></canvas></body></html>`);
+    const dom = new JSDOM(`<!DOCTYPE html><canvas id="pong"></canvas>`);
     global.window = dom.window;
     global.document = dom.window.document;
 
     // Ensure canvas exists before using getContext
     global.canvas = document.getElementById("pong");
-    global.ctx = global.canvas.getContext("2d");
-
-    // Mock any other objects you may need
-    global.isPaused = false;
-    global.ball = {
-        x: 400,
-        y: 300,
-        radius: 10,
-        speed: 4,
-        dx: 4,
-        dy: 4
-    };
-    global.userPaddle = {
-        x: 10,
-        y: 200,
-        width: 10,
-        height: 80,
-        dy: 4
-    };
-    global.aiPaddle = {
-        x: 780,
-        y: 200,
-        width: 10,
-        height: 80,
-        dy: 4
-    };
-    global.scores = [0, 0];
-    global.aiTargetY = 300;
 });
 
 
@@ -58,7 +30,7 @@ describe("Pong Game", () => {
         const initialY = global.ball.y;
 
         global.moveBall();
-x
+
         expect(global.ball.x).not.toBe(initialX);
         expect(global.ball.y).not.toBe(initialY);
     });
