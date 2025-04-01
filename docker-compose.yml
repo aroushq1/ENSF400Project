@@ -3,12 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.jenkins
-    privileged: true
-    user: root
     ports:
       - "8080:8080"
       - "50000:50000"
-    container_name: jenkins
     volumes:
-      - /workspaces/ensf400-lab9-jenkins/jenkins_home:/var/jenkins_home
+      - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+    user: root
+    container_name: jenkins

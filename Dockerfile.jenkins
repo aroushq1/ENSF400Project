@@ -2,17 +2,14 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    gnupg \
-    ca-certificates
-
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
 RUN curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip && \
     unzip sonar-scanner.zip -d /opt && \
     mv /opt/sonar-scanner-* /opt/sonar-scanner && \
     ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
+
+USER jenkins
