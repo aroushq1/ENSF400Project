@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Install') {
+        stage('Checkout') {
             steps {
-                sh 'npm install'
+                checkout scm
             }
         }
 
-        stage('Run Tests') {
+        stage('Install') {
             steps {
-                sh 'npm test || echo "No tests yet"'
+                sh 'npm install'
             }
         }
 
