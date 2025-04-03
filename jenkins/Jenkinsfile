@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/aroush1/ENSE400Project.git', branch: 'handleJenkins'
+                git url: 'https://github.com/aroushq1/ENSF400Project.git', branch: 'handleJenkins'
             }
         }
 
