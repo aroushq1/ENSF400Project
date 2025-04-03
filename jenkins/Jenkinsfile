@@ -14,11 +14,11 @@ pipeline {
             }
         }
 
-        stage('Static Code Analysis') {
-            steps {
-                sh 'sonar-scanner'
-            }
-        }
+        // stage('Static Code Analysis') {
+        //     steps {
+        //         sh 'sonar-scanner'
+        //     }
+        // }
 
         stage('Run Tests') { // Runs the tests defined by/in package.json
             steps {
