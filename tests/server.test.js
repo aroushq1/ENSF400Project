@@ -5,7 +5,6 @@ const express = require('express');
 // Create Express app
 const app = express();
 
-// ✅ Add testable route for HTTP test
 app.get('/', (req, res) => {
   res.send("Hello World");
 });
@@ -21,7 +20,6 @@ describe('GET /', () => {
   });
 });
 
-// ❌ Skip Socket.io test block AND move io inside to prevent early execution
 describe.skip('Socket.io', () => {
   let io, server;
 
