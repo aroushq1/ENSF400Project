@@ -1,22 +1,17 @@
-
-
-
-ipeline {
+pipeline {
     agent any
 
-
     stages {
-
         stage('Clean Workspace') {
             steps {
                 deleteDir()
-                echo " Workspace cleaned before build"
+                echo "Workspace cleaned"
             }
         }
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/aroushq1/ENSF400Project.git', branch: 'handleJenkins'
+                checkout scm
             }
         }
 
@@ -26,31 +21,25 @@ ipeline {
             }
         }
 
-        // stage('Static Code Analysis') {
-        //     steps {
-        //         sh 'sonar-scanner'
-        //     }
-        // }
-
-        stage('Run Tests') { // Runs the tests defined by/in package.json
+        stage('Run Tests') {
             steps {
-                sh 'npm test' 
+                sh 'npm test'
             }
         }
 
         stage('Test Coverage Report') {
             steps {
-                sh 'npm run coverage' //  Generate test coverage report.. saw this online somewhere
+                junit 'test-results/junit.xml'
             }
         }
     }
 
     post {
         always {
-            junit '**/test-results.xml' // Publish test results (JUnit stuff)
+            echo 'Pipeline finished'
         }
         failure {
-            echo 'Tests failed! Check the logs.'
+            echo 'Pipeline failed!'
         }
     }
 }
