@@ -29,7 +29,7 @@ pipeline {
 
         stage('Test Coverage Report') {
             steps {
-                junit 'test-results/junit.xml'
+                junit 'junit.xml'
             }
         }
     }
