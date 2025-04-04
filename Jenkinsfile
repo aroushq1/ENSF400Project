@@ -1,7 +1,19 @@
-pipeline {
+
+
+
+ipeline {
     agent any
 
+
     stages {
+
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+                echo " Workspace cleaned before build"
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/aroushq1/ENSF400Project.git', branch: 'handleJenkins'

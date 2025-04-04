@@ -1,33 +1,31 @@
+
 const request = require('supertest');
 const http = require('http');
 const express = require('express');
 
-// Create Express app
+// Setup app and route
 const app = express();
-
-// ✅ Add testable route
 app.get('/', (req, res) => {
   res.send("Hello World");
 });
-
 app.use(express.static("public"));
 
 describe('GET /', () => {
   it('should return Hello World', async () => {
     const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
+    expect(res.statusCode).toBe(200);
     expect(res.text).toBe("Hello World");
   });
 });
 
-// ✅ Skip this block to avoid breaking Jenkins
+
 describe.skip('Socket.io', () => {
   let io, server;
 
   beforeAll((done) => {
     const { Server } = require('socket.io');
     const httpServer = http.createServer(app);
-    io = new Server(httpServer);
+    io = new Server(httpServer); // This line is now safe
     httpServer.listen(3000, done);
     server = httpServer;
   });
@@ -38,7 +36,6 @@ describe.skip('Socket.io', () => {
 
   it('should handle socket connections', (done) => {
     const socket = require('socket.io-client')('http://localhost:3000');
-
     socket.on('connect', () => {
       expect(socket.connected).toBe(true);
       socket.disconnect();
