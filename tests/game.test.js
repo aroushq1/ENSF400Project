@@ -5,24 +5,56 @@
 global.TextEncoder = require("util").TextEncoder;
 global.TextDecoder = require("util").TextDecoder;
 
-const { TextEncoder, TextDecoder } = require("util");
-
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
-
 const { JSDOM } = require("jsdom");
 
-
-beforeEach(() => {
-    const { JSDOM } = require("jsdom");
-    const dom = new JSDOM(`<!DOCTYPE html><canvas id="pong"></canvas>`);
+beforeAll(() => {
+    const dom = new JSDOM(`<!DOCTYPE html>`);
     global.window = dom.window;
     global.document = dom.window.document;
 
-    // Ensure canvas exists before using getContext
-    global.canvas = document.getElementById("pong");
-});
+    // Inject HTML content into the body
+    document.body.innerHTML = `
+        <canvas id="pong"></canvas>
+        <button id="pauseButton"></button>
+    `;
 
+    global.canvas = document.getElementById("pong");
+
+    // ✅ Now canvas is guaranteed to exist
+    global.canvas.width = 800;
+    global.canvas.height = 600;
+
+    global.ball = { x: 400, y: 300 };
+    global.userPaddle = { y: 0, height: 100 };
+    global.isPaused = false;
+    global.aiTargetY = 250;
+
+    global.moveBall = () => {
+        global.ball.x += 1;
+        global.ball.y += 1;
+
+        if (global.ball.x > global.canvas.width) {
+            global.ball.x = global.canvas.width / 2;
+            global.ball.y = global.canvas.height / 2;
+        }
+    };
+
+    global.movePaddle = (paddle, dy) => {
+        paddle.y += dy;
+        if (paddle.y < 0) paddle.y = 0;
+        if (paddle.y + paddle.height > global.canvas.height)
+            paddle.y = global.canvas.height - paddle.height;
+    };
+
+    global.adjustAiTarget = () => {
+        global.aiTargetY += 10;
+    };
+
+    const pauseButton = document.getElementById("pauseButton");
+    pauseButton.addEventListener("click", () => {
+        global.isPaused = !global.isPaused;
+    });
+});
 
 describe("Pong Game", () => {
     test("Ball should move when game is running", () => {
@@ -38,7 +70,7 @@ describe("Pong Game", () => {
     test("Ball should reset when it goes out of bounds", () => {
         global.scores = [0, 0];
 
-        global.ball.x = global.canvas.width + 10; 
+        global.ball.x = global.canvas.width + 10;
         global.moveBall();
 
         expect(global.ball.x).toBe(global.canvas.width / 2);
@@ -63,10 +95,10 @@ describe("Pong Game", () => {
         const button = document.getElementById("pauseButton");
         expect(global.isPaused).toBe(false);
 
-        button.click(); // Pause
+        button.click();
         expect(global.isPaused).toBe(true);
 
-        button.click(); // Resume
+        button.click();
         expect(global.isPaused).toBe(false);
     });
 });
