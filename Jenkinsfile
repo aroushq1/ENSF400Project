@@ -32,6 +32,14 @@ pipeline {
                 junit 'junit.xml'
             }
         }
+        
+        stage('Static Analysis - SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh 'npx sonar-scanner'
+                }
+            }
+        }
     }
 
     post {
