@@ -5,7 +5,7 @@ pipeline {
         stage('Clean Workspace') {
             steps {
                 deleteDir()
-                echo "Workspace cleaned"
+                echo 'Workspace cleaned'
             }
         }
 
@@ -39,7 +39,7 @@ pipeline {
             echo 'Pipeline finished'
         }
         failure {
-            echo 'Pipeline failed!'
+            echo 'Pipeline failed'
         }
     }
 }
