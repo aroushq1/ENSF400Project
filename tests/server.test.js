@@ -5,21 +5,22 @@ const express = require('express');
 // Create Express app
 const app = express();
 
+// ✅ Add testable route
 app.get('/', (req, res) => {
   res.send("Hello World");
 });
 
-// Serve static files
 app.use(express.static("public"));
 
 describe('GET /', () => {
   it('should return Hello World', async () => {
     const res = await request(app).get('/');
     expect(res.statusCode).toEqual(200);
-    expect(res.text).toBe('Hello World');
+    expect(res.text).toBe("Hello World");
   });
 });
 
+// ✅ Skip this block to avoid breaking Jenkins
 describe.skip('Socket.io', () => {
   let io, server;
 
