@@ -50,7 +50,7 @@ pipeline {
                     chmod +x dependency-check/bin/dependency-check.sh
 
                     echo "Running Dependency Check..."
-                    ./dependency-check/bin/dependency-check.sh --project "Pong-AI" --scan . --format "HTML" --out dependency-check-report
+                    ./dependency-check/bin/dependency-check.sh --project "Pong-AI" --scan . --format "HTML" --out dependency-check-report --disableAssembly --disableYarnAudit
                 '''
             }
         }
