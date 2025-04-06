@@ -48,19 +48,22 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''
-                        echo "Building Docker image..."
-                        docker build -t $IMAGE_NAME .
-                        
-                        echo "Logging in to GitHub Container Registry..."
-                        echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-                        
-                        echo "Pushing image..."
-                        docker push $IMAGE_NAME
-                    '''
+                    sh "echo 'Building Docker image...'"
+                    sh "docker build -t $IMAGE_NAME ."
+
+                    withCredentials([usernamePassword(credentialsId: 'ghcr-creds', usernameVariable: 'GHCR_USER', passwordVariable: 'GHCR_TOKEN')]) {
+                        sh """
+                            echo "Logging in to GitHub Container Registry..."
+                            echo \$GHCR_TOKEN | docker login ghcr.io -u \$GHCR_USER --password-stdin
+
+                            echo "Pushing image..."
+                            docker push $IMAGE_NAME
+                        """
+                    }
                 }
             }
         }
+
 
         stage('Deploy to Codespace') {
             steps {
