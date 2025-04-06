@@ -45,7 +45,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Downloading OWASP DependencyCheck..."
-                    wget https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
+                    curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
                     unzip dependency-check-8.4.0-release.zip -d dependency-check
                     chmod +x dependency-check/bin/dependency-check.sh
 
