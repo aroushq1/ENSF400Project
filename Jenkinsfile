@@ -41,6 +41,20 @@ pipeline {
             }
         }
 
+        stage('Security Analysis - OWASP DependencyCheck') {
+            steps {
+                sh '''
+                    echo "Downloading OWASP DependencyCheck..."
+                    wget https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
+                    unzip dependency-check-8.4.0-release.zip -d dependency-check
+                    chmod +x dependency-check/bin/dependency-check.sh
+
+                    echo "Running Dependency Check..."
+                    ./dependency-check/bin/dependency-check.sh --project "Pong-AI" --scan . --format "HTML" --out dependency-check-report
+                '''
+            }
+        }
+
         stage('Build & Push Docker Image') {
             environment {
                 IMAGE_TAG = "${GIT_COMMIT}"
@@ -63,7 +77,6 @@ pipeline {
                 }
             }
         }
-
 
         stage('Deploy to Codespace') {
             steps {
