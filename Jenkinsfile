@@ -46,7 +46,7 @@ pipeline {
                 sh '''
                     echo "Downloading OWASP DependencyCheck..."
                     curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
-                    unzip dependency-check-8.4.0-release.zip -d dependency-check
+                    unzip -oq dependency-check.zip -d dependency-check
                     chmod +x dependency-check/bin/dependency-check.sh
 
                     echo "Running Dependency Check..."
