@@ -33,12 +33,14 @@ pipeline {
             }
         }
 
-        stage('Static Analysis - SonarQube') {
-            steps {
-                withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-                    withSonarQubeEnv('SonarQubeServer') {
-                        sh 'npx sonar-scanner -Dsonar.login=$SONAR_TOKEN'
-                    }
+      stage('Static Analysis - SonarQube') {
+            withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh '''
+                        npx sonar-scanner \
+                            -Dsonar.login=$SONAR_TOKEN \
+                            -Dsonar.host.url=http://sonarqube:9000
+                    '''
                 }
             }
         }
