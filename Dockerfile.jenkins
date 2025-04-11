@@ -1,0 +1,13 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Install curl, gnupg, and Node.js
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+RUN apt-get install -y docker.io
+
+RUN node -v && npm -v && docker -v

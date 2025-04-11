@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="13" failures="0" errors="0" time="1.391">
+  <testsuite name="Pong Game" errors="0" failures="0" skipped="0" timestamp="2025-04-04T02:28:48" time="0.733" tests="5">
+    <testcase classname="Pong Game Ball should move when game is running" name="Pong Game Ball should move when game is running" time="0.001">
+    </testcase>
+    <testcase classname="Pong Game Ball should reset when it goes out of bounds" name="Pong Game Ball should reset when it goes out of bounds" time="0">
+    </testcase>
+    <testcase classname="Pong Game Paddle should not move out of bounds" name="Pong Game Paddle should not move out of bounds" time="0">
+    </testcase>
+    <testcase classname="Pong Game AI should adjust its target when ball direction changes" name="Pong Game AI should adjust its target when ball direction changes" time="0.001">
+    </testcase>
+    <testcase classname="Pong Game Game should pause and resume" name="Pong Game Game should pause and resume" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="GET /" errors="0" failures="0" skipped="1" timestamp="2025-04-04T02:28:49" time="0.173" tests="2">
+    <testcase classname="GET / should return Hello World" name="GET / should return Hello World" time="0.023">
+    </testcase>
+    <testcase classname="Socket.io should handle socket connections" name="Socket.io should handle socket connections" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="Index HTML" errors="0" failures="0" skipped="0" timestamp="2025-04-04T02:28:49" time="0.073" tests="6">
+    <testcase classname="Index HTML should have the correct page title" name="Index HTML should have the correct page title" time="0.001">
+    </testcase>
+    <testcase classname="Index HTML should contain a canvas element with the id &quot;pong&quot;" name="Index HTML should contain a canvas element with the id &quot;pong&quot;" time="0">
+    </testcase>
+    <testcase classname="Index HTML should have a pause button" name="Index HTML should have a pause button" time="0.001">
+    </testcase>
+    <testcase classname="Index HTML should have a heading &quot;PlayPongW/AI&quot;" name="Index HTML should have a heading &quot;PlayPongW/AI&quot;" time="0.001">
+    </testcase>
+    <testcase classname="Index HTML should have a section with the class &quot;game-info&quot;" name="Index HTML should have a section with the class &quot;game-info&quot;" time="0.008">
+    </testcase>
+    <testcase classname="Index HTML should contain a footer with copyright information" name="Index HTML should contain a footer with copyright information" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
