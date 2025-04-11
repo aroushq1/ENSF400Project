@@ -1,3 +1,8 @@
+/**
+ * @file server.js
+ * @description Express server setup for serving the Pong game with AI.
+ */
+
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');  // Use destructuring to import Server
