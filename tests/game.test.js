@@ -20,7 +20,7 @@ beforeAll(() => {
 
     global.canvas = document.getElementById("pong");
 
-    // ✅ Now canvas is guaranteed to exist
+    // Now canvas is guaranteed to exist
     global.canvas.width = 800;
     global.canvas.height = 600;
 
